@@ -1,0 +1,21 @@
+#setup{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    background-color: antiquewhite;
+}
+form{
+    display:flex;
+}
+
+fieldset{
+    width:100%;
+    display:flex;
+    flex:1;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 18px;
+    background-color: gainsboro;
+    font-weight: bold;
+    margin: 8px;
+}

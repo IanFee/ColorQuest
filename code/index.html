@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles/page.css">
-    <script src="scripts/site.js" ></script>
+    <script src="scripts/gameboard.js" ></script>
     <title> Iana's Game</title>
 </head>
 
@@ -14,7 +14,32 @@
     </header>
     <section id ="setup">
         <h3> Game setup</h3>
-        
+        <form id="controls">
+            
+            <fieldset>
+                <label for="playerName">Player Name</label>
+                <input type="text" id="playerName" name="playerName">
+            </fieldset>
+            <fieldset>
+                <label for="sizeBoard">Game Board Size</label>
+                <input type="text" id="sizeBoard" name="sizeBoard">
+            </fieldset>
+            <fieldset>
+                <label for="color">Colour </label>
+                <select id="color">
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                  </select>
+            </fieldset>
+            <fieldset>
+                <label for="difficulty"> Difficulty </label>
+                <input type="range" id="difficulty" name="difficulty">
+            </fieldset>
+           
+        </form>
+    <button type="submit" form="controls"> Start Game! </button>
+   
     </section>
     <section id="gameboard">
 
