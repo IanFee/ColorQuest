@@ -1,0 +1,88 @@
+/*general code*/
+html, body{
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+}
+body{
+      font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+
+      display:flex;
+      flex-direction: column;
+}
+
+/*header area*/
+header{
+      background-color:bisque;
+      flex:2;
+
+      /*Center items vertically and horizontally*/
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+header h1{
+      margin: 0;
+}
+
+/*setup area*/
+section#setup{
+      flex:4;
+}
+
+/*Center area*/
+section#center{
+      flex:20;
+      display:flex;
+}
+
+/*Center area - Gameboard part*/
+section#gameboard{
+      flex:3;
+      background-color: blueviolet;
+}
+
+/*Center area - High scores part*/
+section#highscore{
+      background-color: bisque;
+      flex:1;
+}
+section#highscore h3{
+      text-align: center;
+}
+div#high_scores_list_wrapper{
+      display: flex;
+      padding: 2px;
+}
+div#high_scores_list_wrapper h4{
+      margin: 0 0 15px 0;
+}
+div#high_scores_list_wrapper h5{
+      font-weight: normal;
+      margin: 10px 0;
+      text-wrap: wrap;
+}
+div#player_names_list{
+      flex:2
+}
+div#player_scores_list{
+      flex:1;
+}
+
+
+
+/*footer area*/
+footer{
+      background-color: antiquewhite;
+      flex:1;
+
+      /*Center items vertically and horizontally*/
+      display: flex;
+      align-items: center;
+      justify-content: center;
+}
+footer h5{
+      margin: 0;
+      font-weight: normal;
+}
