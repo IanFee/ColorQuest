@@ -1,3 +1,5 @@
+
+
 /*general code*/
 html, body{
       width: 100%;
@@ -27,9 +29,27 @@ header h1{
 }
 
 /*setup area*/
-section#setup{
+#setup{
+      display: flex;
       flex:4;
-}
+      flex-direction: column;
+      text-align: center;
+      background-color: antiquewhite;
+  }
+  form{
+      display:flex;
+  }
+  
+  fieldset{
+      display:flex;
+      flex:1;
+      flex-direction: column;
+      text-align: center;
+      border-radius: 18px;
+      background-color: bisque;
+      font-weight: bold;
+      margin: 8px;
+  }
 
 /*Center area*/
 section#center{
@@ -86,3 +106,4 @@ footer h5{
       margin: 0;
       font-weight: normal;
 }
+
