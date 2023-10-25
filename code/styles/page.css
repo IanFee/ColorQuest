@@ -1,23 +1,4 @@
-#setup{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    background-color: antiquewhite;
-}
-form{
-    display:flex;
-}
 
-fieldset{
-    display:flex;
-    flex:1;
-    flex-direction: column;
-    text-align: center;
-    border-radius: 18px;
-    background-color: bisque;
-    font-weight: bold;
-    margin: 8px;
-}
 
 /*general code*/
 html, body{
