@@ -5,17 +5,18 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles/page.css">
     <script src="scripts/gameboard.js" ></script>
+    <script src="scripts/game_setup.js" ></script>
     <title> Iana's Game</title>
 </head>
 
 <body>
     <header>
-        <h1> Iana's Colours Game </h1>
+        <h1> Iana's Colours Game <span id="header_short">(oh, and Mohamed)</span></h1>
     </header>
 
     <section id ="setup">
         <h3> Game setup</h3>
-        <form id="controls">
+        <form id="setup_form">
             
             <fieldset>
                 <label for="playerName">Player Name</label>
@@ -39,7 +40,7 @@
             </fieldset>
            
         </form>
-    <button type="submit" form="controls"> Start Game! </button>
+    <button type="submit" form="setup_form" id="game_setup_submit"> Start Game! </button>
    
     </section>
 
