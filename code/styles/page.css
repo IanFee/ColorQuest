@@ -52,6 +52,12 @@ h1 #header_short{
       font-weight: bold;
       margin: 8px;
   }
+input:invalid{
+      background-color:crimson;
+}
+
+
+/*Remark: How to make the SELECT OPTION TO BE THE SAME SIZE AS THE OTHERS ????
 
   .invalid_input:invalid{
       background-color:red;
@@ -65,8 +71,14 @@ section#center{
 
 /*Center area - Gameboard part*/
 section#gameboard{
+      display:flex;
       flex:3;
-      background-color: blueviolet;
+      background-color: blanchedalmond;
+      flex-direction: column;
+      
+}
+#gameboard button{
+      flex:1;
 }
 
 /*Center area - High scores part*/
@@ -108,4 +120,13 @@ footer{
 footer h5{
       margin: 0;
       font-weight: normal;
+}
+
+td{
+      border-color: blueviolet;
+      padding:20px;
+      background-color: black;
+}
+.selected{
+      border: 2px solid red;
 }
