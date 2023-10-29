@@ -5,9 +5,6 @@
             //Event handlers for the game setup
             const setupForm = document.getElementById("setup_form");
             setupForm.addEventListener('submit', gameSetupHandler);
-
-            const startButton = document.getElementById("game_setup_submit");
-            startButton.addEventListener('click', styleInvalidInput);
             setupForm.addEventListener('change', styleInvalidInput)
             
             //Event handlers for for changing start game button's color
@@ -54,7 +51,7 @@
        * @param {*} e event object that initiated the event handler. Usually a form element.
        */
       function styleInvalidInput(e){
-            e.target.closest('form').classList.add('invalid_input');
+            e.target.classList.add('invalid_input');
       }
 
       /**

@@ -91,14 +91,9 @@ div#high_scores_list_wrapper h5{
 div#player_names_list{
       flex:2;
 }
-div#player_names_list h5{
-      overflow: hidden;
-}
 div#player_scores_list{
       flex:1;
 }
-
-
 
 /*footer area*/
 footer{
