@@ -1,15 +1,15 @@
 'use strict';
 
- document.addEventListener("DOMContentLoaded", setup);
-
-function setup(){
-    
+ document.addEventListener("DOMContentLoaded", function(e){
     
     //Get the form
+    const boardForm  = document.getElementById("gameboard");
+    const board = document.createElement('table');
     const form = document.forms[0];
 
     //Create the board
     form.addEventListener("submit", setTheBoard);
+    board.addEventListener("click", checkSelected);
     
     //Function will begin the database
 
@@ -33,7 +33,7 @@ function setup(){
 
         function randNum(min, max) 
         {
-            return Math.floor(Math.random() *( (max - min) + min));
+            return Math.floor(Math.random() * (max - min) + min);
         }
 
         if(r<=range){
@@ -52,6 +52,22 @@ function setup(){
         }
 
         const g = randNum(min,max);
+
+        if(g<=range){
+            min = 0;
+            max = g+range;
+        }
+        else if(g>=(256-range))
+        {
+            min = g-range;
+            max = 256;
+        }
+        else
+        {
+            min = g-range;
+            max = r+range;
+        }
+
         const b = randNum(min,max);
        
         return `rgb(${r},${g},${b})`;
@@ -122,10 +138,9 @@ function setup(){
     function createBoard(sizeBoard){
 
         //Get the section where the board is supposed to be created!
-        const boardForm  = document.getElementById("gameboard");
         
         //Create the board + append it
-        const board = document.createElement('table');
+        
         board.setAttribute("id","board");
        
         const button = document.getElementById('colors');
@@ -149,19 +164,18 @@ function setup(){
         }
     
     }
-    // function checkCompatibilecolors(userColor){
-//     const tds = document.querySelectorAll('#board td');
 
-//     tds.forEach(td => {
-//         const colorRGB = td.style.backgroundColor;
-//         const colorString = checkDominantColor(generateRGBArray);
+    function checkSelected(event){
 
-//         if(userColor = )
-//     });
-// }
+    const bgColor = event.target.style.backgroundColor;
+    event.target.classList.toggle("selected");
+    event.target.textContent=bgColor;
+       
+    }
 
-// New messages
-}
+
+
+});
 
 
 

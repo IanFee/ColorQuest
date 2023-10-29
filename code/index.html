@@ -15,15 +15,17 @@
 
     <section id ="setup">
         <h3> Game setup</h3>
+        
         <form id="controls">
             
             <fieldset>
                 <label for="playerName">Player Name</label>
-                <input type="text" id="playerName" name="playerName">
+                <input type="text" id="playerName" name="playerName" minlength="5" pattern="^[A-Za-z0-9]+$" required>
+
             </fieldset>
             <fieldset>
                 <label for="sizeBoard">Game Board Size</label>
-                <input type="text" id="sizeBoard" name="sizeBoard">
+                <input type="number" id="sizeBoard" name="sizeBoard" min="3" max="7" minlength="1" pattern="^[0-9]$" required >
             </fieldset>
             <fieldset>
                 <label for="color">Colour </label>
@@ -35,19 +37,21 @@
             </fieldset>
             <fieldset>
                 <label for="difficulty"> Difficulty </label>
-                <input type="range" id="difficulty" name="difficulty">
+                <input type="range" id="difficulty" name="difficulty" min="0" max="3" >
             </fieldset>
            
         </form>
-    <button type="submit" form="controls"> Start Game! </button>
+    <button id="formed" type="submit" form="controls"> Start Game! </button>
    
     </section>
 
     <section id="center">
         <section id="gameboard">
-
+            
+            <button id="colors" type="submit" > Submit yout guess! </button>
+            
         </section>
-
+        
         <section id="highscore">
             <h3>
                 High Scores
