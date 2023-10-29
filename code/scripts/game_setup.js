@@ -21,12 +21,10 @@
             
             setSetupFormStatus(false);
 
-            //TODO: Gets all user input values
+            //Gets all user input values and uses them to create the board
             let sizeBoard = document.getElementById('sizeBoard').value;
             let color = e.target.elements.color.value;
             createBoard(sizeBoard);
-        
-            //TODO: Call function creatTable
       }
 
        /**
