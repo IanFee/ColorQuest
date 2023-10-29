@@ -22,8 +22,9 @@
             setSetupFormStatus(false);
 
             //TODO: Gets all user input values
-                  //let sizeBoard = e.target.sizeBoard.value;
-                  //let color = e.target.elements.color.value;
+            let sizeBoard = document.getElementById('sizeBoard').value;
+            let color = e.target.elements.color.value;
+            createBoard(sizeBoard);
         
             //TODO: Call function creatTable
       }
@@ -57,7 +58,7 @@
       /**
        * Modified the start button's color to fit the one chosen by the user 
        */
-      function changeStartButtonColor(){
+      function changeStartButtonColor(e){
             const startButton = document.getElementById("game_setup_submit");
             startButton.style.backgroundColor = e.target.value;
       }
