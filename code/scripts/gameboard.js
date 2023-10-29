@@ -169,7 +169,7 @@
 
     const bgColor = event.target.style.backgroundColor;
     event.target.classList.toggle("selected");
-    event.target.textContent=bgColor;
+    //event.target.textContent=bgColor;
        
     }
 
