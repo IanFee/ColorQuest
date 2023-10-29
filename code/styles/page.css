@@ -1,5 +1,3 @@
-
-
 /*general code*/
 html, body{
       width: 100%;
@@ -26,6 +24,10 @@ header{
 }
 header h1{
       margin: 0;
+}
+h1 #header_short{
+      font-size: 12px;
+      font-weight: normal;
 }
 
 /*setup area*/
@@ -56,6 +58,10 @@ input:invalid{
 
 
 /*Remark: How to make the SELECT OPTION TO BE THE SAME SIZE AS THE OTHERS ????
+
+  .invalid_input:invalid{
+      background-color:red;
+  }
 
 /*Center area*/
 section#center{
@@ -93,16 +99,13 @@ div#high_scores_list_wrapper h4{
 div#high_scores_list_wrapper h5{
       font-weight: normal;
       margin: 10px 0;
-      text-wrap: wrap;
 }
 div#player_names_list{
-      flex:2
+      flex:2;
 }
 div#player_scores_list{
       flex:1;
 }
-
-
 
 /*footer area*/
 footer{
@@ -127,4 +130,3 @@ td{
 .selected{
       border: 2px solid red;
 }
-

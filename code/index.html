@@ -5,31 +5,33 @@
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles/page.css">
     <script src="scripts/gameboard.js" ></script>
+    <script src="scripts/game_setup.js" ></script>
     <title> Iana's Game</title>
 </head>
 
 <body>
     <header>
-        <h1> Iana's Colours Game </h1>
+        <h1> Iana's Colours Game <span id="header_short">(oh, and Mohamed's too)</span></h1>
     </header>
 
     <section id ="setup">
         <h3> Game setup</h3>
-        
-        <form id="controls">
+        <form id="setup_form" autocomplete="off">
             
             <fieldset>
                 <label for="playerName">Player Name</label>
-                <input type="text" id="playerName" name="playerName" minlength="5" pattern="^[A-Za-z0-9]+$" required>
-
+                <input type="text" id="playerName" name="playerName"
+                    minlength="5" maxlength="20" pattern="^[A-Za-z0-9][A-Za-z0-9 ]+[A-Za-z0-9]$" required>
             </fieldset>
             <fieldset>
                 <label for="sizeBoard">Game Board Size</label>
-                <input type="number" id="sizeBoard" name="sizeBoard" min="3" max="7" minlength="1" pattern="^[0-9]$" required >
+                <input type="number" id="sizeBoard" name="sizeBoard"
+                    min="3" max="7" minlength="1" required>
             </fieldset>
             <fieldset>
                 <label for="color">Colour </label>
-                <select id="color">
+                <select id="color" required>
+                    <option value="" selected disabled hidden></option>
                     <option value="red">Red</option>
                     <option value="green">Green</option>
                     <option value="blue">Blue</option>
@@ -37,11 +39,12 @@
             </fieldset>
             <fieldset>
                 <label for="difficulty"> Difficulty </label>
-                <input type="range" id="difficulty" name="difficulty" min="0" max="3" >
+                <input type="range" id="difficulty" name="difficulty" 
+                    min="0" max="3" value="0">
             </fieldset>
            
         </form>
-    <button id="formed" type="submit" form="controls"> Start Game! </button>
+    <button type="submit" form="setup_form" id="game_setup_submit"> Start Game! </button>
    
     </section>
 
