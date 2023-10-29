@@ -11,24 +11,27 @@
 
 <body>
     <header>
-        <h1> Iana's Colours Game <span id="header_short">(oh, and Mohamed)</span></h1>
+        <h1> Iana's Colours Game <span id="header_short">(oh, and Mohamed's too)</span></h1>
     </header>
 
     <section id ="setup">
         <h3> Game setup</h3>
-        <form id="setup_form">
+        <form id="setup_form" autocomplete="off">
             
             <fieldset>
                 <label for="playerName">Player Name</label>
-                <input type="text" id="playerName" name="playerName">
+                <input type="text" id="playerName" name="playerName"
+                    minlength="5" maxlength="20" pattern="^[A-Za-z0-9][A-Za-z0-9 ]+[A-Za-z0-9]$" required>
             </fieldset>
             <fieldset>
                 <label for="sizeBoard">Game Board Size</label>
-                <input type="text" id="sizeBoard" name="sizeBoard">
+                <input type="number" id="sizeBoard" name="sizeBoard"
+                    min="3" max="7" minlength="1" required>
             </fieldset>
             <fieldset>
                 <label for="color">Colour </label>
-                <select id="color">
+                <select id="color" required>
+                    <option value="" selected disabled hidden></option>
                     <option value="red">Red</option>
                     <option value="green">Green</option>
                     <option value="blue">Blue</option>
@@ -36,7 +39,8 @@
             </fieldset>
             <fieldset>
                 <label for="difficulty"> Difficulty </label>
-                <input type="range" id="difficulty" name="difficulty">
+                <input type="range" id="difficulty" name="difficulty" 
+                    min="0" max="3" value="0">
             </fieldset>
            
         </form>

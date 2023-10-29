@@ -53,6 +53,10 @@ h1 #header_short{
       margin: 8px;
   }
 
+  .invalid_input:invalid{
+      background-color:red;
+  }
+
 /*Center area*/
 section#center{
       flex:20;
@@ -83,10 +87,12 @@ div#high_scores_list_wrapper h4{
 div#high_scores_list_wrapper h5{
       font-weight: normal;
       margin: 10px 0;
-      text-wrap: wrap;
 }
 div#player_names_list{
-      flex:2
+      flex:2;
+}
+div#player_names_list h5{
+      overflow: hidden;
 }
 div#player_scores_list{
       flex:1;
