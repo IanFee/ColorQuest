@@ -121,10 +121,14 @@ footer h5{
 
 td{
       border-color: blueviolet;
-      padding:20px;
+      
       background-color: black;
+      box-sizing: border-box;
+      width:30;
+      height:30px;
 }
 .selected{
       border: 2px solid red;
 }
+
 

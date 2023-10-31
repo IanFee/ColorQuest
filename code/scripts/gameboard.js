@@ -26,51 +26,29 @@
 
     function generateRandomColor() {
 
-        const r = randNum(0,256);
+        function randNum(range) 
+        {
+            return Math.floor(Math.random() * (range) );
+        }
+
+        const arr = [];
         let range = chooseRange();
-        let min;
-        let max;
+        const baseNumber = randNum(256); 
 
-        function randNum(min, max) 
-        {
-            return Math.floor(Math.random() * (max - min) + min);
+      
+        for(let i=0; i<3; i++)
+        {   
+            if(!(range==256))
+            {
+                arr[i] = randNum(range)+baseNumber;
+            }
+            else{
+                arr[i] = randNum(range);   
+            }
         }
-
-        if(r<=range){
-            min = 0;
-            max = r+range;
-        }
-        else if(r>=(256-range))
-        {
-            min = r-range;
-            max = 256;
-        }
-        else
-        {
-            min = r-range;
-            max = r+range;
-        }
-
-        const g = randNum(min,max);
-
-        if(g<=range){
-            min = 0;
-            max = g+range;
-        }
-        else if(g>=(256-range))
-        {
-            min = g-range;
-            max = 256;
-        }
-        else
-        {
-            min = g-range;
-            max = r+range;
-        }
-
-        const b = randNum(min,max);
+           
        
-        return `rgb(${r},${g},${b})`;
+        return `rgb(${arr[0]},${arr[1]},${arr[2]})`;
 
       }
 // function checkDominantColor(rgb){
@@ -116,7 +94,7 @@
 
         if(difficulty==0)
         {
-            range = 0;
+            range = 256;
         }
         else if(difficulty==1)
         {
@@ -169,7 +147,7 @@
 
     const bgColor = event.target.style.backgroundColor;
     event.target.classList.toggle("selected");
-    //event.target.textContent=bgColor;
+    event.target.textContent=bgColor;
        
     }
 
@@ -183,3 +161,52 @@
 
 
 
+        // let range = chooseRange();
+        // let min;
+        // let max;
+
+        // function randNum(min, max) 
+        // {
+        //     return Math.floor(Math.random() * (max - min) + min);
+        // }
+        // if(range=256){
+        //     min=0;
+        //     max=256;
+        // }
+        // else if(r<=range){
+        //     min = 0;
+        //     max = r+range;
+        // }
+        // else if(r>=(256-range))
+        // {
+        //     min = r-range;
+        //     max = 256;
+        // }
+        // else
+        // {
+        //     min = r-range;
+        //     max = r+range;
+        // }
+
+        // const g = randNum(min,max);
+
+        // if(range=256){
+        //     min=0;
+        //     max=256;
+        // }
+        // else if(g<=range){
+        //     min = 0;
+        //     max = g+range;
+        // }
+        // else if(g>=(256-range))
+        // {
+        //     min = g-range;
+        //     max = 256;
+        // }
+        // else
+        // {
+        //     min = g-range;
+        //     max = r+range;
+        // }
+
+        // const b = randNum(min,max);
