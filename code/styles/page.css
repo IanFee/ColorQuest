@@ -27,6 +27,10 @@ header{
 header h1{
       margin: 0;
 }
+h1 #header_short{
+      font-size: 12px;
+      font-weight: normal;
+}
 
 /*setup area*/
 #setup{
@@ -55,7 +59,11 @@ input:invalid{
 }
 
 
-/*Remark: How to make the SELECT OPTION TO BE THE SAME SIZE AS THE OTHERS ????
+/*Remark: How to make the SELECT OPTION TO BE THE SAME SIZE AS THE OTHERS ????*/
+
+.invalid_input:invalid{
+background-color:red;
+}
 
 /*Center area*/
 section#center{
@@ -73,6 +81,15 @@ section#gameboard{
 }
 #gameboard button{
       flex:1;
+}
+
+td{
+      border-color: blueviolet;
+      padding:20px;
+      background-color: black;
+}
+.selected{
+      border: 2px solid red;
 }
 
 /*Center area - High scores part*/
@@ -96,7 +113,7 @@ div#high_scores_list_wrapper h5{
       text-wrap: wrap;
 }
 div#player_names_list{
-      flex:2
+      flex:2;
 }
 div#player_scores_list{
       flex:1;
@@ -119,16 +136,7 @@ footer h5{
       font-weight: normal;
 }
 
-td{
-      border-color: blueviolet;
-      
-      background-color: black;
-      box-sizing: border-box;
-      width:30;
-      height:30px;
-}
-.selected{
-      border: 2px solid red;
-}
+
+
 
 
