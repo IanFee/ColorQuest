@@ -77,7 +77,7 @@ section#gameboard{
       flex:1;
 }
 
-td{
+#gameboard td{
       border-color: blueviolet;
       padding:20px;
       background-color: black;
@@ -90,26 +90,36 @@ td{
 section#highscore{
       background-color: bisque;
       flex:1;
+
+      /* needed to position delete button */
+      position: relative;
 }
 section#highscore h3{
       text-align: center;
 }
-div#high_scores_list_wrapper{
-      display: flex;
-      padding: 2px;
-}
-div#high_scores_list_wrapper h4{
-      margin: 0 0 15px 0;
-}
-div#high_scores_list_wrapper h5{
+section#highscore th{
       font-weight: normal;
-      margin: 10px 0;
+      text-align: left;
+      color:cadetblue;
 }
-div#player_names_list{
-      flex:2;
+section#highscore table{
+      table-layout: fixed;
+      width: 100%;
 }
-div#player_scores_list{
-      flex:1;
+section#highscore td{
+      font-size: 13px;
+}
+#sort_changer:hover{
+      color:violet;
+      text-decoration: underline;
+}
+#sort_changer:active{
+      color:blue;
+}
+button#delete_scores_button{
+      position:absolute;
+      bottom: 0;
+      width: 100%;
 }
 
 /*footer area*/
