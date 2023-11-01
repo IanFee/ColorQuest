@@ -2,50 +2,31 @@
 
 function generateRandomColor() {
 
-    const r = randNum(0,256);
-    let range = chooseRange();
-    let min;
-    let max;
+        function randNum(range) 
+        {
+            return Math.floor(Math.random() * (range) );
+        }
 
-    function randNum(min, max) {
-        return Math.floor(Math.random() * (max - min) + min);
-    }
+        const arr = [];
+        let range = chooseRange();
+        const baseNumber = randNum(256); 
 
-    if(r<=range){
-        min = 0;
-        max = r+range;
-    }
-    else if(r>=(256-range))
-    {
-        min = r-range;
-        max = 256;
-    }
-    else
-    {
-        min = r-range;
-        max = r+range;
-    }
+      
+        for(let i=0; i<3; i++)
+        {   
+            if(!(range==256))
+            {
+                arr[i] = randNum(range)+baseNumber;
+            }
+            else{
+                arr[i] = randNum(range);   
+            }
+        }
+           
+       
+        return `rgb(${arr[0]},${arr[1]},${arr[2]})`;
 
-    const g = randNum(min,max);
-
-    if(g<=range){
-        min = 0;
-        max = g+range;
-    }
-    else if(g>=(256-range)){
-        min = g-range;
-        max = 256;
-    }
-    else
-    {
-        min = g-range;
-        max = r+range;
-    }
-
-    const b = randNum(min,max);
-    
-    return `rgb(${r},${g},${b})`;
-}
+      }
 // function checkDominantColor(rgb){
 
 //     function checkBiggestRGB(rgb)
@@ -87,19 +68,30 @@ function chooseRange(){
 
     if(difficulty==0)
     {
-        range = 0;
-    }
-    else if(difficulty==1)
-    {
-        range = 80;
-    }
-    else if(difficulty==2)
-    {
-        range = 40;
-    }
-    else 
-    {
-        range = 10;
+        
+        let range;
+
+        let difficulty = form.difficulty.value;
+
+        if(difficulty==0)
+        {
+            range = 256;
+        }
+        else if(difficulty==1)
+        {
+            range = 80;
+        }
+        else if(difficulty==2)
+        {
+            range = 40;
+        }
+        else 
+        {
+            range = 10;
+        }
+
+        return range;
+
     }
 
     return range;

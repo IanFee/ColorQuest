@@ -1,3 +1,5 @@
+
+
 /*general code*/
 html, body{
       width: 100%;
@@ -37,12 +39,12 @@ h1 #header_short{
       flex-direction: column;
       text-align: center;
       background-color: antiquewhite;
-}
-form{
+  }
+  form{
       display:flex;
-}
-
-fieldset{
+  }
+  
+  fieldset{
       display:flex;
       flex:1;
       flex-direction: column;
@@ -51,7 +53,11 @@ fieldset{
       background-color: bisque;
       font-weight: bold;
       margin: 8px;
+  }
+input:invalid{
+      background-color:crimson;
 }
+
 
 /*Remark: How to make the SELECT OPTION TO BE THE SAME SIZE AS THE OTHERS ????*/
 
@@ -122,6 +128,8 @@ button#delete_scores_button{
       width: 100%;
 }
 
+
+
 /*footer area*/
 footer{
       background-color: antiquewhite;
@@ -136,3 +144,8 @@ footer h5{
       margin: 0;
       font-weight: normal;
 }
+
+
+
+
+
