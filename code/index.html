@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="styles/page.css">
     <script src="scripts/gameboard.js" ></script>
     <script src="scripts/game_setup.js" ></script>
+    <script src="scripts/highscore_table.js"></script>
     <title> Iana's Game</title>
 </head>
 
@@ -16,7 +17,7 @@
 
     <section id ="setup">
         <h3> Game setup</h3>
-        <form id="setup_form" autocomplete="off">
+        <form id="setup_form" autocomplete="of">
             
             <fieldset>
                 <label for="playerName">Player Name</label>
@@ -50,47 +51,35 @@
 
     <section id="center">
         <section id="gameboard">
-            
-            <button id="colors" type="submit" > Submit yout guess! </button>
-            
+            <button id="colors" type="button" disabled="true"> Submit yout guess! </button>
         </section>
         
         <section id="highscore">
             <h3>
                 High Scores
             </h3>
-
-            <div id="high_scores_list_wrapper">
-                <div id="player_names_list">
-                    <h4>
+            <table id="highscores_table">
+                <thead>
+                    <th colspan="2">
                         Player name
-                    </h4>
-                    <h5>
-                        Mohamed 
-                    </h5>
-                    <h5>
-                        Iana
-                    </h5>
-                </div>
-                
-                <div id="player_scores_list">
-                    <h4>
+                    </th>
+                    
+                    <th id="sort_changer">
                         Score
-                    </h4>
-                    <h5>
-                        1000
-                    </h5>
-                    <h5>
-                        -50000?
-                    </h5>
-                </div>
-            </div>
+                    </th>
+
+                </thead>
+                <tbody>
+                    <!-- Filed by highscore_table.js -->
+                </tbody>
+            </table>
+            <button id="delete_scores_button" type="button">
+                Clear High Scores
+            </button>
         </section>
     </section>
-
     <footer>
         <h5> Copyright © Iana Feniuc & Mohamed Aljak 2023</h5>
     </footer>
-
 </body>
 </html>

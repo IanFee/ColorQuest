@@ -133,3 +133,37 @@ function checkSelected(event){
     event.target.classList.toggle("selected");
     //event.target.textContent=bgColor;
 }
+
+document.addEventListener('DOMContentLoaded', function(){
+    const gameSubmitButton = document.getElementById("colors");
+    gameSubmitButton.addEventListener('click', gameSubmitHandler);
+});
+
+function gameSubmitHandler(e){
+    let player = {
+        name: document.getElementById("playerName").value,
+        score: calculateScore()
+    }
+    passNewPlayer(player);
+
+    setSetupFormStatus(true);
+    setGameboardStatus(false);
+}
+
+function calculateScore(){
+    //not yet implemented
+    return Math.floor(Math.random(100) * 100);
+}
+
+function setGameboardStatus(status){
+    //Check for incorrect input values
+    if(status !== true && status !== false){
+        throw new Error("Incorrect Usage: Function disableSetupForm accepts 'true' and 'false' values only." )
+    }
+  
+    //Changes true to false and false to true so that using the function is more intuitive
+    status = !status;
+
+    const gameSubmitButton = document.getElementById("colors");
+    gameSubmitButton.disabled = status;
+}
