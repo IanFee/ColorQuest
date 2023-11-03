@@ -4,27 +4,90 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles/page.css">
-    <script src="scripts/site.js" ></script>
+    <script src="scripts/gameboard.js" ></script>
+    <script src="scripts/game_setup.js" ></script>
     <title> Iana's Game</title>
 </head>
 
 <body>
     <header>
-        <h1> Iana's Colours Game </h1>
+        <h1> Iana's Colours Game <span id="header_short">(oh, and Mohamed's too)</span></h1>
     </header>
+
     <section id ="setup">
         <h3> Game setup</h3>
+        <form id="setup_form" autocomplete="off">
+            
+            <fieldset>
+                <label for="playerName">Player Name</label>
+                <input type="text" id="playerName" name="playerName"
+                    minlength="5" maxlength="20" pattern="^[A-Za-z0-9][A-Za-z0-9 ]+[A-Za-z0-9]$" required>
+            </fieldset>
+            <fieldset>
+                <label for="sizeBoard">Game Board Size</label>
+                <input type="number" id="sizeBoard" name="sizeBoard"
+                    min="3" max="7" minlength="1" required>
+            </fieldset>
+            <fieldset>
+                <label for="color">Colour </label>
+                <select id="color" required>
+                    <option value="" selected disabled hidden></option>
+                    <option value="red">Red</option>
+                    <option value="green">Green</option>
+                    <option value="blue">Blue</option>
+                  </select>
+            </fieldset>
+            <fieldset>
+                <label for="difficulty"> Difficulty </label>
+                <input type="range" id="difficulty" name="difficulty" 
+                    min="0" max="3" value="0">
+            </fieldset>
+           
+        </form>
+
+    <button type="submit" form="setup_form" id="game_setup_submit"> Start Game! </button>
+   
+    </section>
+
+    <section id="center">
+        <section id="gameboard">
+        </section>
         
-    </section>
-    <section id="gameboard">
+        <section id="highscore">
+            <h3>
+                High Scores
+            </h3>
 
-    </section>
-    <section id="highscore">
-
+            <div id="high_scores_list_wrapper">
+                <div id="player_names_list">
+                    <h4>
+                        Player name
+                    </h4>
+                    <h5>
+                        Mohamed 
+                    </h5>
+                    <h5>
+                        Iana
+                    </h5>
+                </div>
+                
+                <div id="player_scores_list">
+                    <h4>
+                        Score
+                    </h4>
+                    <h5>
+                        1000
+                    </h5>
+                    <h5>
+                        -50000?
+                    </h5>
+                </div>
+            </div>
+        </section>
     </section>
 
     <footer>
-        <div> Copyright Iana Feniuc & Mohamed Aljak 2023</div>
+        <h5> Copyright © Iana Feniuc & Mohamed Aljak 2023</h5>
     </footer>
 
 </body>
