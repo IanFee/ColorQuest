@@ -4,6 +4,7 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles/page.css">
+    <link rel="stylesheet" href="styles/mobile.css">
     <script src="scripts/gameboard.js" ></script>
     <script src="scripts/game_setup.js" ></script>
     <script src="scripts/highscore_table.js"></script>
@@ -17,7 +18,7 @@
 
     <section id ="setup">
         <h3> Game setup</h3>
-        <form id="setup_form" autocomplete="of">
+        <form id="setup_form" autocomplete="off">
             
             <fieldset>
                 <label for="playerName">Player Name</label>
@@ -43,7 +44,6 @@
                 <input type="range" id="difficulty" name="difficulty" 
                     min="0" max="3" value="0">
             </fieldset>
-           
         </form>
     <button type="submit" form="setup_form" id="game_setup_submit"> Start Game! </button>
    

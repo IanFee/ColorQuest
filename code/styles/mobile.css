@@ -1,0 +1,24 @@
+@media (max-width:800px){
+      header{
+            position: sticky;
+            top: 0;
+      }
+
+      form#setup_form{
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            place-items: center;
+      }
+
+      form#setup_form > *{
+            width: 70%;
+      }
+
+      section#center{
+            flex-direction: column;
+      }
+
+      button#delete_scores_button{
+            position:static;
+      }
+}
