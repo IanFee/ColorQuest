@@ -17,4 +17,8 @@
       section#center{
             flex-direction: column;
       }
+
+      button#delete_scores_button{
+            position:static;
+      }
 }
