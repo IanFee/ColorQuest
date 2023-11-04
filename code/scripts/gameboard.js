@@ -117,6 +117,8 @@ function chooseRange(difficulty){
 * @param sizeBoard(size of the board), difficulty(the difficulty number) and colorChoosenByUser(the color that the user selected)
 * @returns nothing
 */
+let submitGuessesButton;
+
 function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
 
   let columns ;
@@ -140,9 +142,10 @@ function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
     boardForm.appendChild(message);
     
     //Create submit guessesbutton +append it
-    const submitGuessesButton = document.createElement('button');
+    submitGuessesButton = document.createElement('button');
     boardForm.appendChild(submitGuessesButton);
     submitGuessesButton.textContent = "Submit Your Guesses !";
+
         
     //Creates the trs and tds + counts number of matches
     for(let i=0; i<sizeBoard; i++)
@@ -205,6 +208,10 @@ function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
         //Changes the message content to the pourcentage of right answers
         message.textContent = displayPourcentage(allTds,lengthOfTds,countNumberMatches,colorChoosenByUser);
     });
+
+    //document.addEventListener('DOMContentLoaded', function(){
+        submitGuessesButton.addEventListener('click', gameSubmitHandler);
+    //});
 }
 
 /* @function compareColorsMatch
@@ -331,4 +338,37 @@ function transformRGBintoArray(rbgValue)
     finalArray      = tempArr.map(colors => parseInt(colors,10));
 
     return finalArray;
+}
+
+
+
+
+
+function gameSubmitHandler(e){
+    let player = {
+        name: document.getElementById("playerName").value,
+        score: calculateScore()
+    }
+    passNewPlayer(player);
+
+    setSetupFormStatus(true);
+    setGameboardStatus(false);
+}
+
+function calculateScore(){
+    //not yet implemented
+    return Math.floor(Math.random(100) * 100);
+}
+
+function setGameboardStatus(status){
+    //Check for incorrect input values
+    if(status !== true && status !== false){
+        throw new Error("Incorrect Usage: Function disableSetupForm accepts 'true' and 'false' values only." )
+    }
+  
+    //Changes true to false and false to true so that using the function is more intuitive
+    status = !status;
+    if(submitGuessesButton){
+    submitGuessesButton.disabled = status;
+    }
 }
