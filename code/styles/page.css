@@ -1,4 +1,3 @@
-
 /*general code*/
 html, body{
       width: 100%;
@@ -26,42 +25,58 @@ header{
 header h1{
       margin: 0;
 }
-h1 #header_short{
+h1 span#header_short{
       font-size: 12px;
       font-weight: normal;
 }
 
 /*setup area*/
-#setup{
-      display: flex;
-      flex:4;
-      flex-direction: column;
-      text-align: center;
-      background-color: antiquewhite;
-  }
-  form{
-      display:flex;
-  }
-  
-  fieldset{
-      display:flex;
-      flex:1;
-      flex-direction: column;
-      text-align: center;
-      border-radius: 18px;
-      background-color: bisque;
-      font-weight: bold;
-      margin: 8px;
-  }
-input:invalid{
-      background-color:crimson;
-}
-
 
 /*Remark: How to make the SELECT OPTION TO BE THE SAME SIZE AS THE OTHERS ????*/
 
-.invalid_input:invalid{
+.invalid_input:invalid {
 background-color:red;
+}
+section#setup{
+      flex:4;
+      text-align: center;
+      background-color: antiquewhite;
+}
+form#setup_form{
+      display:flex;
+}
+  
+#setup_form fieldset{
+      flex:1;
+
+      display:flex;
+      flex-direction: column;
+      align-items: center;
+
+      border-radius: 18px;
+      background-color: bisque;
+      margin: 8px;
+}
+
+#setup_form fieldset label{
+      font-weight: bold;
+}
+
+#setup_form fieldset >:nth-child(2){
+      width: 90%;
+      text-align: center;
+}
+button#game_setup_submit{
+      background-color: darkgray;
+      font-weight: bold;
+      font-size: 15px;
+      color: white;
+      width: 100%;
+}
+
+/* asynchronously added using javascript */
+.invalid_input:invalid{
+      border-color:red;
 }
 
 /*Center area*/
@@ -98,35 +113,41 @@ td{
       border: 2px solid red;
 }
 
-
 /*Center area - High scores part*/
 section#highscore{
       background-color: bisque;
       flex:1;
+
+      /* needed to position delete button */
+      position: relative;
 }
 section#highscore h3{
       text-align: center;
 }
-div#high_scores_list_wrapper{
-      display: flex;
-      padding: 2px;
-}
-div#high_scores_list_wrapper h4{
-      margin: 0 0 15px 0;
-}
-div#high_scores_list_wrapper h5{
+section#highscore th{
       font-weight: normal;
-      margin: 10px 0;
-      text-wrap: wrap;
+      text-align: left;
+      color:cadetblue;
 }
-div#player_names_list{
-      flex:2;
+section#highscore table{
+      table-layout: fixed;
+      width: 100%;
 }
-div#player_scores_list{
-      flex:1;
+section#highscore td{
+      font-size: 13px;
 }
-
-
+#sort_changer:hover{
+      color:violet;
+      text-decoration: underline;
+}
+#sort_changer:active{
+      color:blue;
+}
+button#delete_scores_button{
+      position:absolute;
+      bottom: 0;
+      width: 100%;
+}
 
 /*footer area*/
 footer{
@@ -142,3 +163,8 @@ footer h5{
       margin: 0;
       font-weight: normal;
 }
+
+
+
+
+

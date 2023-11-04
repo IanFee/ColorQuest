@@ -4,8 +4,10 @@
 <head>
     <meta charset="utf-8">
     <link rel="stylesheet" href="styles/page.css">
+    <link rel="stylesheet" href="styles/mobile.css">
     <script src="scripts/gameboard.js" ></script>
     <script src="scripts/game_setup.js" ></script>
+    <script src="scripts/highscore_table.js"></script>
     <title> Iana's Game</title>
 </head>
 
@@ -42,9 +44,7 @@
                 <input type="range" id="difficulty" name="difficulty" 
                     min="0" max="3" value="0">
             </fieldset>
-           
         </form>
-
     <button type="submit" form="setup_form" id="game_setup_submit"> Start Game! </button>
    
     </section>
@@ -57,38 +57,28 @@
             <h3>
                 High Scores
             </h3>
-
-            <div id="high_scores_list_wrapper">
-                <div id="player_names_list">
-                    <h4>
+            <table id="highscores_table">
+                <thead>
+                    <th colspan="2">
                         Player name
-                    </h4>
-                    <h5>
-                        Mohamed 
-                    </h5>
-                    <h5>
-                        Iana
-                    </h5>
-                </div>
-                
-                <div id="player_scores_list">
-                    <h4>
+                    </th>
+                    
+                    <th id="sort_changer">
                         Score
-                    </h4>
-                    <h5>
-                        1000
-                    </h5>
-                    <h5>
-                        -50000?
-                    </h5>
-                </div>
-            </div>
+                    </th>
+
+                </thead>
+                <tbody>
+                    <!-- Filed by highscore_table.js -->
+                </tbody>
+            </table>
+            <button id="delete_scores_button" type="button">
+                Clear High Scores
+            </button>
         </section>
     </section>
-
     <footer>
         <h5> Copyright © Iana Feniuc & Mohamed Aljak 2023</h5>
     </footer>
-
 </body>
 </html>
