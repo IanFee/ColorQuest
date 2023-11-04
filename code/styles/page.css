@@ -31,6 +31,12 @@ h1 span#header_short{
 }
 
 /*setup area*/
+
+/*Remark: How to make the SELECT OPTION TO BE THE SAME SIZE AS THE OTHERS ????*/
+
+.invalid_input:invalid {
+background-color:red;
+}
 section#setup{
       flex:4;
       text-align: center;
@@ -87,12 +93,19 @@ section#gameboard{
       flex-direction: column;
       
 }
+#gameboard table{
+flex:auto;
+}
 #gameboard button{
-      flex:1;
+    height:30px;
+}
+#gameboard p{
+      height:10px;
+      text-align: center;
 }
 
-#gameboard td{
-      border-color: blueviolet;
+td{
+      border: 2px solid white;
       padding:20px;
       background-color: black;
 }

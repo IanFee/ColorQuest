@@ -32,7 +32,10 @@ function gameSetupHandler(e){
 
       //Gets all user input values and uses them to create the board
       let sizeBoard = document.getElementById('sizeBoard').value;
-      createBoard(sizeBoard);
+      let color = e.target.elements.color.value;
+      let difficulty = e.target.elements.difficulty.valueAsNumber;
+
+      createGameBoard(sizeBoard, color, difficulty);
 }
 
       /**
