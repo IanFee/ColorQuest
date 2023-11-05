@@ -28,12 +28,12 @@
             <fieldset>
                 <label for="sizeBoard">Game Board Size</label>
                 <input type="number" id="sizeBoard" name="sizeBoard"
-                    min="3" max="7" minlength="1" required>
+                    min="3" max="7" required>
             </fieldset>
             <fieldset>
                 <label for="color">Colour </label>
                 <select id="color" required>
-                    <option value="" selected disabled hidden></option>
+                    <option value="" selected disabled hidden> Choose an option </option>
                     <option value="red">Red</option>
                     <option value="green">Green</option>
                     <option value="blue">Blue</option>
@@ -51,6 +51,7 @@
 
     <section id="center">
         <section id="gameboard">
+            <!-- File by gameboard.js -->
         </section>
         
         <section id="highscore">
@@ -59,14 +60,15 @@
             </h3>
             <table id="highscores_table">
                 <thead>
-                    <th colspan="2">
+                <tr>
+                    <th >
                         Player name
                     </th>
                     
                     <th id="sort_changer">
                         Score
                     </th>
-
+                </tr>
                 </thead>
                 <tbody>
                     <!-- Filed by highscore_table.js -->
