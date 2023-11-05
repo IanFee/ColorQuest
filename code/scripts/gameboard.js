@@ -1,4 +1,101 @@
 'use strict';
+
+let submitGuessesButton;
+
+/* @function createBoard
+* This function generates a table with rows and columns based on user input, in addition with a <p> elemnt and a button 
+* @param sizeBoard(size of the board), difficulty(the difficulty number) and colorChoosenByUser(the color that the user selected)
+* @returns nothing
+*/
+function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
+  let countNumberMatches = 0;
+  let numberOfSelectedTiles = 0;   
+  let allTds;
+  let lengthOfTds;
+
+    //Get the section where the board is supposed to be created!
+    const boardForm  = document.getElementById("gameboard");
+
+    //Create the board + append it
+    const board = document.createElement('table');
+    board.setAttribute("id", "gameboard_table");
+    boardForm.appendChild(board);
+
+    //Create text message + append it
+    const message = document.createElement('p');
+    boardForm.appendChild(message);
+    
+    //Create submit guessesbutton +append it
+    submitGuessesButton = document.createElement('button');
+    boardForm.appendChild(submitGuessesButton);
+    submitGuessesButton.textContent = "Submit Your Guesses !";
+
+        
+    //Creates the trs and tds
+    for(let i=0; i<sizeBoard; i++)
+    {
+        //Create the trs
+        let rows = document.createElement('tr');
+        board.appendChild(rows);
+    
+        for(let k=0;k<sizeBoard;k++){   
+            //Create the tds
+            let columns = document.createElement('td');
+            rows.appendChild(columns);
+
+            //Gives an RGB color to a td
+            columns.style.backgroundColor = generateRandomColor(difficulty);
+        }
+    }
+
+    //Gets number of dominant tiles of chosen color
+    let tableCells = getTableCells(board);
+    countNumberMatches = countNumDomTiles(tableCells, colorChoosenByUser);
+    
+    /*Adds a text message inside the <p> element that shows how many tiles are
+    * matching the right color and how many are selected !*/
+    message.textContent = showGeneralCountMessage( colorChoosenByUser, countNumberMatches,0);
+    message.style.color = "brown";
+   
+    //Event handler for the tiles!
+    board.addEventListener("click", function(event){
+        toggleSelectedTableCell(event);
+        //Counts number of selected tiles
+        let tableCells = getTableCells(board);
+        numberOfSelectedTiles = getSelectedTableCells(tableCells).length;
+        
+        //Updates the selcted tiles text message
+        message.textContent = showGeneralCountMessage( colorChoosenByUser,countNumberMatches, numberOfSelectedTiles);
+        
+
+        //Disaibling/Enaibling the submitGuesses button when the user goes over the total num of tiles that match the user selected color
+        allTds = document.querySelectorAll("td.selected");
+        lengthOfTds = allTds.length;
+
+        if( lengthOfTds > countNumberMatches){
+            submitGuessesButton.disabled = true;
+        }
+        if( lengthOfTds == countNumberMatches){
+            submitGuessesButton.disabled = false;
+        }
+     });
+     
+    //Event handler 
+     submitGuessesButton.addEventListener("click", function(event)
+     {
+        //Changes the message content to the pourcentage of right answers
+        message.textContent = displayPourcentage(allTds,lengthOfTds,countNumberMatches,colorChoosenByUser);
+    });
+
+    //document.addEventListener('DOMContentLoaded', function(){
+        submitGuessesButton.addEventListener('click', gameSubmitHandler);
+    //});
+
+    //Event handler to check when user initiates cheat mode using their keyboard
+    document.addEventListener('keydown', cheatModeHandler);
+}
+
+
 /* @function generateRandomColor
 * Uses ranNum function to generate a random number, all depnding on the range allowed
 * and sets those values into a rgb color.
@@ -33,7 +130,6 @@ function generateRandomColor(difficulty){
         }
            
     return `rgb(${arrRGB[0]},${arrRGB[1]},${arrRGB[2]})`;
-
 }
 
 /* @function checkDominantColor
@@ -112,109 +208,69 @@ function chooseRange(difficulty){
     return range;
 }
 
-/* @function createBoard
-* This function generates a table with rows and columns based on user input, in addition with a <p> elemnt and a button 
-* @param sizeBoard(size of the board), difficulty(the difficulty number) and colorChoosenByUser(the color that the user selected)
-* @returns nothing
+/** 
+* @function compareColorsMatch function compares if the tile's predominant color is the same as the color that the user selected in the controls
+* @param rgb(color of the tiles in rgb values) and color (the color choosen by the user in controls)
+* @returns true if the color fo the tile matches the user's selected color otherwise returns false
+* 
 */
-let submitGuessesButton;
-
-function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
-
-  let columns;
-  let rows;
-  let match = false;
-  let countNumberMatches = 0;
-  let numberOfSelectedTiles = 0;   
-  let colorTile;
-  let allTds;
-  let lengthOfTds;
-
-    //Get the section where the board is supposed to be created!
-    const boardForm  = document.getElementById("gameboard");
-
-    //Create the board + append it
-    const board = document.createElement('table');
-    board.setAttribute("id", "gameboard_table");
-    boardForm.appendChild(board);
-
-    //Create text message + append it
-    const message = document.createElement('p');
-    boardForm.appendChild(message);
-    
-    //Create submit guessesbutton +append it
-    submitGuessesButton = document.createElement('button');
-    boardForm.appendChild(submitGuessesButton);
-    submitGuessesButton.textContent = "Submit Your Guesses !";
-
-        
-    //Creates the trs and tds + counts number of matches
-    for(let i=0; i<sizeBoard; i++)
-    {
-        //Create the trs
-        rows = document.createElement('tr');
-        board.appendChild(rows);
-    
-        for(let k=0;k<sizeBoard;k++){   
-
-            //Create the tds
-            columns = document.createElement('td');
-            rows.appendChild(columns);
-
-            //Gives an RGB color to a td
-            columns.style.backgroundColor = generateRandomColor(difficulty);
-
-            //Check if tile color matches the user selcted color(if true match++)
-            colorTile = columns.style.backgroundColor;
-
-            match = compareColorsMatch(colorTile,colorChoosenByUser);
-            if(match)
-            {
-                countNumberMatches++;
-            }
+function compareColorsMatch(rgb,colorUser){  
+    let arrayRgb;
+    let colorTile;
             
-        
-        }
-    }
-    
-    /*Adds a text message inside the <p> element that shows how many tiles are
-    * matching the right color and how many are selected !*/
-    message.textContent = showGeneralCountMessage( colorChoosenByUser, countNumberMatches,0);
-    message.style.color = "brown";
-   
-    //Event handler for the tiles!
-    board.addEventListener("click", function(event){
-        //Counts number of selected tiles
-        numberOfSelectedTiles += checkSelected(event);
-        
-        //Updates the selcted tiles text message
-        message.textContent = showGeneralCountMessage( colorChoosenByUser,countNumberMatches, numberOfSelectedTiles);
-        
+    arrayRgb = transformRGBintoArray(rgb); 
+    colorTile  = checkDominantColor(arrayRgb);
 
-        //Disaibling/Enaibling the submitGuesses button when the user goes over the total num of tiles that match the user selected color
-        allTds = document.querySelectorAll("td.selected");
-        lengthOfTds = allTds.length;
-
-        if( lengthOfTds > countNumberMatches){
-            submitGuessesButton.disabled = true;
-        }
-        if( lengthOfTds == countNumberMatches){
-            submitGuessesButton.disabled = false;
-        }
-     });
-     
-    //Event handler 
-     submitGuessesButton.addEventListener("click", function(event)
-     {
-        //Changes the message content to the pourcentage of right answers
-        message.textContent = displayPourcentage(allTds,lengthOfTds,countNumberMatches,colorChoosenByUser);
-    });
-
-    submitGuessesButton.addEventListener('click', gameSubmitHandler);
-
-    //Event handler to check when user initiates cheat mode using their keyboard
-    document.addEventListener('keydown', cheatModeHandler);
+        if(colorTile == colorUser )
+            {
+                return true;
+            }
+    return false;
 }
+
+/** 
+* @function transformRGBintoArray
+* This function will transform a rgb color into an array composed of the rgb 3 number values
+* @param rgbValue(which represent the color of the tile in rgb value)
+* @returns an array with the 3 values of the rgb color
+*/
+function transformRGBintoArray(rbgValue){   
+    let finalArray  = [];
+    let rgbString   = String(rbgValue);
+    let tempArr     = rgbString.split("(");
+    let sliceCopy   = tempArr.slice(1,2);
+    rgbString       = String(sliceCopy);
+    tempArr         = rgbString.split(")");
+    sliceCopy       = tempArr.slice(0,1);
+    rgbString       = String(sliceCopy);
+    tempArr         = rgbString.split(",");
+    finalArray      = tempArr.map(colors => parseInt(colors,10));
+
+    return finalArray;
+}
+
+/**
+* Selects/unselects the tiles which the user clicked on by given them a red border or taking it off.
+* @param {*} e event object that initiated the event handler.
+*/
+function toggleSelectedTableCell(e){
+    //Gets the closest table cell to where the use clicked inside the game board
+    let tableCell = e.target.closest("td");
+    //Exits the function if the user clicked in an area of the board that is not inside a tableCell
+    if(tableCell === null){
+        return;
+    }
+    //Toggles the selection CSS on and off
+    tableCell.classList.toggle("selected");
+}
+
+function getSelectedTableCells(tableCells){
+    //Gets only the table cells that are selected
+    let selectedTableCells = tableCells
+                    .filter(tableCell => tableCell.classList.contains("selected"));
+    return selectedTableCells;
+}
+
 
 /**
  * Keyboard input handler that checks if the user initiated the "cheat mode" correctly
@@ -252,59 +308,15 @@ function toggleCheatMode(){
             let rgb = tableCell.style.backgroundColor;
             let rgbArr = transformRGBintoArray(rgb)
             let dominantColor = checkDominantColor(rgbArr)
-            tableCell.innerText = `${rgb}\r${dominantColor}`;
+            let rgbTextSpan = document.createElement("span");
+            rgbTextSpan.innerText = `${rgb}\r${dominantColor}`; 
+            tableCell.appendChild(rgbTextSpan);
         });
     }
     gameboard_table.classList.toggle("cheat_mode");
 }
 
-/* @function compareColorsMatch
-* This function compares if the tile's predominant color is the same as the color that the user selected in the controls
-* @param rgb(color of the tiles in rgb values) and color (the color choosen by the user in controls)
-* @returns true if the color fo the tile matches the user's selected color otherwise returns false
-*/
-
-function compareColorsMatch(rgb,colorUser){  
-    let arrayRgb;
-    let colorTile;
-            
-    arrayRgb = transformRGBintoArray(rgb); 
-    colorTile  = checkDominantColor(arrayRgb);
-
-        if(colorTile == colorUser )
-            {
-                return true;
-            }
-    return false;
-}
-
-/**
-* Selects/unselects the tiles which the user clicked on by given them a red border or taking it off.
-* @param {*} e event object that initiated the event handler.
-*/
-function checkSelected(event){
-
-    let numSelected = 0;
-
-    if(event.target.tagName === "TD")
-    {
-        event.target.classList.toggle("selected");
-
-        if(event.target.classList.contains('selected'))
-        {
-            numSelected++;
-        }
-        if(!(event.target.classList.contains('selected')))
-        {
-            numSelected--;
-        }
-    }
-   
-    return numSelected;
-    
-}
-
-/* @function displayPourcentage
+/** @function displayPourcentage
 * This function changes the text message to display the pourcentage of right answers that the user got 
 * based on the total number of tiles that exist with this predominant color.
 * @param columns(which are a collection of tds), length(which is the number of tds in total),
@@ -356,41 +368,34 @@ function displayPourcentage(columns,length,numberOfTilesRightColor, colorUser){
 * and selectedTiles( which is the total number of selected tiles in general no matter wrong or good they are)
 * @returns a string containing the text message with the parameters
 */
-function showGeneralCountMessage(colorUser, numberOfTilesRightColor,selectedTiles)
-{
- let text = "Searching for "+colorUser+" ! Your target is "+numberOfTilesRightColor+" ! "+ selectedTiles+ " selected tiles!"; 
- return text;
-}
-
-/* @function transformRGBintoArray
-* This function will transform a rgb color into an array composed of the rgb 3 number values
-* @param rgbValue(which represent the color of the tile in rgb value)
-* @returns an array with the 3 values of the rgb color
-*/
-function transformRGBintoArray(rbgValue)
-{   
-    let finalArray  = [];
-    let rgbString   = String(rbgValue);
-    let tempArr     = rgbString.split("(");
-    let sliceCopy   = tempArr.slice(1,2);
-    rgbString       = String(sliceCopy);
-    tempArr         = rgbString.split(")");
-    sliceCopy       = tempArr.slice(0,1);
-    rgbString       = String(sliceCopy);
-    tempArr         = rgbString.split(",");
-    finalArray      = tempArr.map(colors => parseInt(colors,10));
-
-    return finalArray;
+function showGeneralCountMessage(colorUser, numberOfTilesRightColor,selectedTiles){
+    let text = "Searching for "+colorUser+" ! Your target is "+numberOfTilesRightColor+" ! "+ selectedTiles+ " selected tiles!"; 
+    return text;
 }
 
 
-
-
+function countNumDomTiles(tiles, colorChoosenByUser){
+    let numDomTiles = 0;
+    for(let i = 0; i < tiles.length; i++){
+        let tileRGB = tiles[i].style.backgroundColor;
+        if(compareColorsMatch(tileRGB, colorChoosenByUser)){
+            numDomTiles ++;
+        }
+    }
+    return numDomTiles;
+}
 
 function gameSubmitHandler(e){
+    let table = document.getElementById("gameboard_table")
+    let tableCells= getTableCells(table);
+
+    let colorChoosenByUser = document.getElementById("color").value;
+    let difficulty = Number(document.getElementById("difficulty").value);
+    let boardSize = document.getElementById("sizeBoard").value;
+
     let player = {
         name: document.getElementById("playerName").value,
-        score: calculateScore()
+        score: calculateScore(tableCells, boardSize, colorChoosenByUser, difficulty)
     }
     passNewPlayer(player);
 
@@ -398,9 +403,23 @@ function gameSubmitHandler(e){
     setGameboardStatus(false);
    }
 
-function calculateScore(){
-    //not yet implemented
-    return Math.floor(Math.random(100) * 100);
+function getTableCells(table){
+    let tableCells = Array.from(table.querySelectorAll("td"));
+    
+    return tableCells;
+}
+
+function calculateScore(tableCells, boardSize, colorChoosenByUser, difficulty){
+    let numTotalDom = countNumDomTiles(tableCells, colorChoosenByUser);
+    let selectedTableCells = getSelectedTableCells(tableCells);
+    let numCorrectSelected = countNumDomTiles(selectedTableCells, colorChoosenByUser);
+
+    let percent = (numCorrectSelected / numTotalDom) * 100;
+    let boardSizeMultiplier = (boardSize - 2) * 0.5;
+    let difficultyMultiplier = (difficulty + 1) * 0.5;
+    let score = Math.floor(percent * boardSizeMultiplier * difficultyMultiplier);
+
+    return score;
 }
 
 function setGameboardStatus(status){
