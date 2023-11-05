@@ -113,8 +113,8 @@ function generateRandomColor(difficulty){
             return Math.floor(Math.random() * range );
         }
 
-    let arrRGB       = [];
-    let range        = chooseRange(difficulty);
+    let arrRGB = [];
+    let range  = chooseRange(difficulty);
     const baseNumber = randNum(256); 
 
         for(let i=0; i<3; i++)
@@ -271,6 +271,7 @@ function getSelectedTableCells(tableCells){
     return selectedTableCells;
 }
 
+
 /**
  * Keyboard input handler that checks if the user initiated the "cheat mode" correctly
  * @param {*} e keydown event
@@ -400,7 +401,7 @@ function gameSubmitHandler(e){
 
     setSetupFormStatus(true);
     setGameboardStatus(false);
-}
+   }
 
 function getTableCells(table){
     let tableCells = Array.from(table.querySelectorAll("td"));
