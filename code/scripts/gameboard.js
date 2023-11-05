@@ -237,8 +237,8 @@ function transformRGBintoArray(rbgValue) {
 
     return finalArray;
 }
-
-/**
+    
+    /**
 * Selects/unselects the tiles which the user clicked on by given them a red border or taking it off.
 * @param {*} e event object that initiated the event handler.
 */
@@ -264,6 +264,7 @@ function getSelectedTableCells(tableCells) {
         .filter(tableCell => tableCell.classList.contains("selected"));
     return selectedTableCells;
 }
+
 
 /**
  * Keyboard input handler that checks if the user initiated the "cheat mode" correctly
