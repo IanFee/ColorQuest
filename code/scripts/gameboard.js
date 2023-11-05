@@ -185,7 +185,8 @@ function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
     //Event handler for the tiles!
     board.addEventListener("click", function(event){
         //Counts number of selected tiles
-        numberOfSelectedTiles += checkSelected(event);
+        toggleSelectedTableCell(event);
+        numberOfSelectedTiles = countSelected(event);
         
         //Updates the selcted tiles text message
         message.textContent = showGeneralCountMessage( colorChoosenByUser,countNumberMatches, numberOfSelectedTiles);
@@ -254,7 +255,9 @@ function toggleCheatMode(){
             let rgb = tableCell.style.backgroundColor;
             let rgbArr = transformRGBintoArray(rgb)
             let dominantColor = checkDominantColor(rgbArr)
-            tableCell.innerText = `${rgb}\r${dominantColor}`;
+            let rgbTextSpan = document.createElement("span");
+            rgbTextSpan.innerText = `${rgb}\r${dominantColor}`; 
+            tableCell.appendChild(rgbTextSpan);
         });
     }
     gameboard_table.classList.toggle("cheat_mode");
@@ -284,26 +287,25 @@ function compareColorsMatch(rgb,colorUser){
 * Selects/unselects the tiles which the user clicked on by given them a red border or taking it off.
 * @param {*} e event object that initiated the event handler.
 */
-function checkSelected(event){
+function toggleSelectedTableCell(e){
+    //Gets the closest table cell to where the use clicked inside the game board
+    let tableCell = e.target.closest("td");
+    //Toggles the selection CSS on and off
+    tableCell.classList.toggle("selected");
+}
 
+function countSelectedTableCells(e){
     let numSelected = 0;
 
-    if(event.target.tagName === "TD")
-    {
-        event.target.classList.toggle("selected");
+    //Gets all table cells inside the gameboard
+    const tableCells = Array.from(e.querySelectorAll("td"));
+    //Gets only the table cells that are selected
+    let selectedTableCells = tableCells
+                    .filter(tableCell => tableCell.classList.contains("selected"));
+    //Gets number of selected table cells
+    numSelected = selectedTableCells.length;
 
-        if(event.target.classList.contains('selected'))
-        {
-            numSelected++;
-        }
-        if(!(event.target.classList.contains('selected')))
-        {
-            numSelected--;
-        }
-    }
-   
-    return numSelected;
-    
+    return countSelected;
 }
 
 /* @function displayPourcentage
