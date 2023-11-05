@@ -16,8 +16,8 @@ function generateRandomColor(difficulty){
             return Math.floor(Math.random() * range );
         }
 
-    let arrRGB       = [];
-    let range        = chooseRange(difficulty);
+    let arrRGB = [];
+    let range  = chooseRange(difficulty);
     const baseNumber = randNum(256); 
 
         for(let i=0; i<3; i++)
@@ -210,9 +210,7 @@ function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
         message.textContent = displayPourcentage(allTds,lengthOfTds,countNumberMatches,colorChoosenByUser);
     });
 
-    //document.addEventListener('DOMContentLoaded', function(){
-        submitGuessesButton.addEventListener('click', gameSubmitHandler);
-    //});
+    submitGuessesButton.addEventListener('click', gameSubmitHandler);
 
     //Event handler to check when user initiates cheat mode using their keyboard
     document.addEventListener('keydown', cheatModeHandler);
@@ -398,7 +396,7 @@ function gameSubmitHandler(e){
 
     setSetupFormStatus(true);
     setGameboardStatus(false);
-}
+   }
 
 function calculateScore(){
     //not yet implemented
