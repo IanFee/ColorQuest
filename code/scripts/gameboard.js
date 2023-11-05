@@ -389,7 +389,7 @@ function gameSubmitHandler(e){
     let tableCells= getTableCells(table);
 
     let colorChoosenByUser = document.getElementById("color").value;
-    let difficulty = document.getElementById("difficulty").value;
+    let difficulty = Number(document.getElementById("difficulty").value);
     let boardSize = document.getElementById("sizeBoard").value;
 
     let player = {
@@ -415,7 +415,7 @@ function calculateScore(tableCells, boardSize, colorChoosenByUser, difficulty){
 
     let percent = (numCorrectSelected / numTotalDom) * 100;
     let boardSizeMultiplier = (boardSize - 2) * 0.5;
-    let difficultyMultiplier = (difficulty +1) * 0.5;
+    let difficultyMultiplier = (difficulty + 1) * 0.5;
     let score = Math.floor(percent * boardSizeMultiplier * difficultyMultiplier);
 
     return score;
