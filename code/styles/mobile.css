@@ -18,6 +18,10 @@
             flex-direction: column;
       }
 
+      section#gameboard{
+            min-height: 800px;
+      }
+
       button#delete_scores_button{
             position:static;
       }
