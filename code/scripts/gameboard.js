@@ -8,13 +8,8 @@ let submitGuessesButton;
 * @returns nothing
 */
 function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
-
-  let columns;
-  let rows;
-  let match = false;
   let countNumberMatches = 0;
   let numberOfSelectedTiles = 0;   
-  let colorTile;
   let allTds;
   let lengthOfTds;
 
@@ -36,32 +31,26 @@ function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
     submitGuessesButton.textContent = "Submit Your Guesses !";
 
         
-    //Creates the trs and tds + counts number of matches
+    //Creates the trs and tds
     for(let i=0; i<sizeBoard; i++)
     {
         //Create the trs
-        rows = document.createElement('tr');
+        let rows = document.createElement('tr');
         board.appendChild(rows);
     
         for(let k=0;k<sizeBoard;k++){   
-
             //Create the tds
-            columns = document.createElement('td');
+            let columns = document.createElement('td');
             rows.appendChild(columns);
 
             //Gives an RGB color to a td
             columns.style.backgroundColor = generateRandomColor(difficulty);
-
-            //Check if tile color matches the user selcted color(if true match++)
-            colorTile = columns.style.backgroundColor;
-
-            match = compareColorsMatch(colorTile,colorChoosenByUser);
-            if(match)
-            {
-                countNumberMatches++;
-            }
         }
     }
+
+    //Gets number of dominant tiles of chosen color
+    let tableCells = getTableCells(board);
+    countNumberMatches = countNumDomTiles(tableCells, colorChoosenByUser);
     
     /*Adds a text message inside the <p> element that shows how many tiles are
     * matching the right color and how many are selected !*/
@@ -141,7 +130,6 @@ function generateRandomColor(difficulty){
         }
            
     return `rgb(${arrRGB[0]},${arrRGB[1]},${arrRGB[2]})`;
-
 }
 
 /* @function checkDominantColor
