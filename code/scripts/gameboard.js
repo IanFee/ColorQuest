@@ -186,7 +186,7 @@ function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
     board.addEventListener("click", function(event){
         //Counts number of selected tiles
         toggleSelectedTableCell(event);
-        numberOfSelectedTiles = countSelected(event);
+        numberOfSelectedTiles = countSelectedTableCells(event);
         
         //Updates the selcted tiles text message
         message.textContent = showGeneralCountMessage( colorChoosenByUser,countNumberMatches, numberOfSelectedTiles);
@@ -298,14 +298,14 @@ function countSelectedTableCells(e){
     let numSelected = 0;
 
     //Gets all table cells inside the gameboard
-    const tableCells = Array.from(e.querySelectorAll("td"));
+    const tableCells = Array.from(e.currentTarget.querySelectorAll("td"));
     //Gets only the table cells that are selected
     let selectedTableCells = tableCells
                     .filter(tableCell => tableCell.classList.contains("selected"));
     //Gets number of selected table cells
     numSelected = selectedTableCells.length;
 
-    return countSelected;
+    return numSelected;
 }
 
 /* @function displayPourcentage
