@@ -60,8 +60,6 @@ function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
             {
                 countNumberMatches++;
             }
-            
-        
         }
     }
     
@@ -72,9 +70,10 @@ function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
    
     //Event handler for the tiles!
     board.addEventListener("click", function(event){
-        //Counts number of selected tiles
         toggleSelectedTableCell(event);
-        numberOfSelectedTiles = countSelectedTableCells(event);
+        //Counts number of selected tiles
+        let tableCells = getTableCells(board);
+        numberOfSelectedTiles = getSelectedTableCells(tableCells).length;
         
         //Updates the selcted tiles text message
         message.textContent = showGeneralCountMessage( colorChoosenByUser,countNumberMatches, numberOfSelectedTiles);
@@ -269,22 +268,19 @@ function transformRGBintoArray(rbgValue){
 function toggleSelectedTableCell(e){
     //Gets the closest table cell to where the use clicked inside the game board
     let tableCell = e.target.closest("td");
+    //Exits the function if the user clicked in an area of the board that is not inside a tableCell
+    if(tableCell === null){
+        return;
+    }
     //Toggles the selection CSS on and off
     tableCell.classList.toggle("selected");
 }
 
-function countSelectedTableCells(e){
-    let numSelected = 0;
-
-    //Gets all table cells inside the gameboard
-    const tableCells = Array.from(e.currentTarget.querySelectorAll("td"));
+function getSelectedTableCells(tableCells){
     //Gets only the table cells that are selected
     let selectedTableCells = tableCells
                     .filter(tableCell => tableCell.classList.contains("selected"));
-    //Gets number of selected table cells
-    numSelected = selectedTableCells.length;
-
-    return numSelected;
+    return selectedTableCells;
 }
 
 /**
@@ -389,19 +385,28 @@ function showGeneralCountMessage(colorUser, numberOfTilesRightColor,selectedTile
 }
 
 
-function countNumCorrectTiles(){
-
+function countNumDomTiles(tiles, colorChoosenByUser){
+    let numDomTiles = 0;
+    for(let i = 0; i < tiles.length; i++){
+        let tileRGB = tiles[i].style.backgroundColor;
+        if(compareColorsMatch(tileRGB, colorChoosenByUser)){
+            numDomTiles ++;
+        }
+    }
+    return numDomTiles;
 }
 
 function gameSubmitHandler(e){
-    let numCorrect = 
-    let numSelected = countSelectedTableCells();
-    let boardSize = 
+    let table = document.getElementById("gameboard_table")
+    let tableCells= getTableCells(table);
 
+    let colorChoosenByUser = document.getElementById("color").value;
+    let difficulty = document.getElementById("difficulty").value;
+    let boardSize = document.getElementById("sizeBoard").value;
 
     let player = {
         name: document.getElementById("playerName").value,
-        score: calculateScore()
+        score: calculateScore(tableCells, boardSize, colorChoosenByUser, difficulty)
     }
     passNewPlayer(player);
 
@@ -409,9 +414,23 @@ function gameSubmitHandler(e){
     setGameboardStatus(false);
 }
 
-function calculateScore(numCorrect, numSelected, boardSize, difficulty){
-    //not yet implemented
-    return Math.floor(Math.random(100) * 100);
+function getTableCells(table){
+    let tableCells = Array.from(table.querySelectorAll("td"));
+    
+    return tableCells;
+}
+
+function calculateScore(tableCells, boardSize, colorChoosenByUser, difficulty){
+    let numTotalDom = countNumDomTiles(tableCells, colorChoosenByUser);
+    let selectedTableCells = getSelectedTableCells(tableCells);
+    let numCorrectSelected = countNumDomTiles(selectedTableCells, colorChoosenByUser);
+
+    let percent = (numCorrectSelected / numTotalDom) * 100;
+    let boardSizeMultiplier = (boardSize - 2) * 0.5;
+    let difficultyMultiplier = (difficulty +1) * 0.5;
+    let score = Math.floor(percent * boardSizeMultiplier * difficultyMultiplier);
+
+    return score;
 }
 
 function setGameboardStatus(status){
