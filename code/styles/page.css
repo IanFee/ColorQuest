@@ -106,10 +106,9 @@ section#gameboard{
       border: 3px solid white;
       font-size: 12px;
       text-align: center;
-      text-shadow: white 0 0 10px;
-      overflow: hidden;
-      font-weight: bold;
-      text-emphasis: pink;
+}
+#gameboard td span{
+      background-color: blanchedalmond;
 }
 #gameboard td.selected{
       border: 3px solid red;
@@ -137,6 +136,7 @@ section#highscore table{
 }
 section#highscore td{
       font-size: 13px;
+      overflow:hidden;
 }
 #sort_changer:hover{
       color:violet;

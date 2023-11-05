@@ -65,15 +65,15 @@ function styleInvalidInput(e){
 }
 
 /**
- * Styles all input boxes in a form to show the user which of their data is invalid. Has on effect id all user data is valid.
+ * Styles all input boxes in a form to show the user which of their data is invalid. Has no effect if all user data is valid.
  * @param {*} e event object that initiated the event handler. Has to be a form element
  */
 function styleInvalidForm(e){
       if(e.tagName != 'FORM'){
             throw new Error("Incorrect Usage: Function styleInvalidForm only accepts form elements.");
       }
-      Array.from(e.elements)
-            .forEach(element => element.closest("fieldset").classList.add("invalid_input"));
+      Array.from(e.querySelectorAll("fieldset"))
+            .forEach(fieldset => fieldset.classList.add("invalid_input"));
 }
 
 /**
