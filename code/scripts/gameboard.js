@@ -121,7 +121,7 @@ let submitGuessesButton;
 
 function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
 
-  let columns ;
+  let columns;
   let rows;
   let match = false;
   let countNumberMatches = 0;
@@ -135,6 +135,7 @@ function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
 
     //Create the board + append it
     const board = document.createElement('table');
+    board.setAttribute("id", "gameboard_table");
     boardForm.appendChild(board);
 
     //Create text message + append it
@@ -212,6 +213,51 @@ function createGameBoard(sizeBoard,colorChoosenByUser,difficulty){
     //document.addEventListener('DOMContentLoaded', function(){
         submitGuessesButton.addEventListener('click', gameSubmitHandler);
     //});
+
+    //Event handler to check when user initiates cheat mode using their keyboard
+    document.addEventListener('keydown', cheatModeHandler);
+}
+
+/**
+ * Keyboard input handler that checks if the user initiated the "cheat mode" correctly
+ * @param {*} e keydown event
+ * @returns nothing
+ */
+function cheatModeHandler(e){
+    //Exits if the user didn't click "shift + C"
+    if(!(e.shiftKey && e.key === 'C')){
+        return;
+    }
+    //Exist if the user clicked "shift + C" inside an input area CC
+    if(e.target.tagName === "INPUT"){
+        return;
+    }
+    toggleCheatMode();
+}
+
+/**
+ * Toggles the cheat mode for the game on and off.
+ */
+function toggleCheatMode(){
+    let gameboard_table = document.getElementById("gameboard_table");
+    const tableCells = Array.from(gameboard_table.querySelectorAll("td"));
+
+    //Removes cheat text if it was already there
+    if(gameboard_table.classList.contains("cheat_mode")){
+        tableCells.forEach(tableCell => {
+            tableCell.innerText = "";
+        });
+    }
+    //Adds cheat text if it wasn't already there
+    else{
+        tableCells.forEach(tableCell => {
+            let rgb = tableCell.style.backgroundColor;
+            let rgbArr = transformRGBintoArray(rgb)
+            let dominantColor = checkDominantColor(rgbArr)
+            tableCell.innerText = `${rgb}\r${dominantColor}`;
+        });
+    }
+    gameboard_table.classList.toggle("cheat_mode");
 }
 
 /* @function compareColorsMatch
@@ -231,7 +277,6 @@ function compareColorsMatch(rgb,colorUser){
             {
                 return true;
             }
-
     return false;
 }
 
