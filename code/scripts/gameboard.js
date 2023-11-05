@@ -216,8 +216,8 @@ function chooseRange(difficulty){
 */
 function compareColorsMatch(rgb,colorUser){  
     let arrayRgb;
-    let colorTile;
-            
+  let colorTile;
+  
     arrayRgb = transformRGBintoArray(rgb); 
     colorTile  = checkDominantColor(arrayRgb);
 
@@ -248,8 +248,8 @@ function transformRGBintoArray(rbgValue){
 
     return finalArray;
 }
-
-/**
+    
+    /**
 * Selects/unselects the tiles which the user clicked on by given them a red border or taking it off.
 * @param {*} e event object that initiated the event handler.
 */
@@ -263,7 +263,7 @@ function toggleSelectedTableCell(e){
     //Toggles the selection CSS on and off
     tableCell.classList.toggle("selected");
 }
-
+     
 function getSelectedTableCells(tableCells){
     //Gets only the table cells that are selected
     let selectedTableCells = tableCells
@@ -309,8 +309,8 @@ function toggleCheatMode(){
             let rgbArr = transformRGBintoArray(rgb)
             let dominantColor = checkDominantColor(rgbArr)
             let rgbTextSpan = document.createElement("span");
-            rgbTextSpan.innerText = `${rgb}\r${dominantColor}`; 
-            tableCell.appendChild(rgbTextSpan);
+            rgbTextSpan.innerText = `${rgb}\r${dominantColor}`;
+tableCell.appendChild(rgbTextSpan);
         });
     }
     gameboard_table.classList.toggle("cheat_mode");
@@ -369,8 +369,8 @@ function displayPourcentage(columns,length,numberOfTilesRightColor, colorUser){
 * @returns a string containing the text message with the parameters
 */
 function showGeneralCountMessage(colorUser, numberOfTilesRightColor,selectedTiles){
-    let text = "Searching for "+colorUser+" ! Your target is "+numberOfTilesRightColor+" ! "+ selectedTiles+ " selected tiles!"; 
-    return text;
+ let text = "Searching for "+colorUser+" ! Your target is "+numberOfTilesRightColor+" ! "+ selectedTiles+ " selected tiles!"; 
+ return text;
 }
 
 
@@ -385,8 +385,9 @@ function countNumDomTiles(tiles, colorChoosenByUser){
     return numDomTiles;
 }
 
+
 function gameSubmitHandler(e){
-    let table = document.getElementById("gameboard_table")
+let table = document.getElementById("gameboard_table")
     let tableCells= getTableCells(table);
 
     let colorChoosenByUser = document.getElementById("color").value;
@@ -401,7 +402,7 @@ function gameSubmitHandler(e){
 
     setSetupFormStatus(true);
     setGameboardStatus(false);
-   }
+}
 
 function getTableCells(table){
     let tableCells = Array.from(table.querySelectorAll("td"));

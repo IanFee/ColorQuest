@@ -1,6 +1,6 @@
 "use strict"
 
-document.addEventListener('DOMContentLoaded', function(e) {
+document.addEventListener('DOMContentLoaded', (e) => {
       //Event handlers for the game setup
       const setupForm = document.getElementById("setup_form");
       setupForm.addEventListener('submit', gameSetupHandler);
