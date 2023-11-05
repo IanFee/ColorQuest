@@ -28,7 +28,6 @@ function gameSetupHandler(e){
       e.preventDefault();
       
       setSetupFormStatus(false);
-      setGameboardStatus(true);
 
       //Gets all user input values and uses them to create the board
       let sizeBoard = document.getElementById('sizeBoard').value;
